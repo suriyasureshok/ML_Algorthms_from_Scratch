@@ -1,20 +1,3 @@
-"""
-ElasticNet Regression (from scratch using Coordinate Descent)
-
-This algorithm combines both L1 (Lasso) and L2 (Ridge) regularization to handle 
-high-dimensional sparse data and prevent overfitting.
-
-Key Features:
-- Performs feature selection (via L1 penalty)
-- Shrinks coefficients to reduce overfitting (via L2 penalty)
-- Optimized using coordinate descent
-- Useful when you suspect some features are irrelevant, but also want stability
-
-Attributes:
-    coef_ (np.ndarray): Learned weights for each feature.
-    intercept_ (float): Bias term learned from training data.
-"""
-
 import numpy as np
 
 class ElasticNet:
@@ -91,13 +74,4 @@ class ElasticNet:
         self.intercept_ = y_mean - np.dot(X_mean, self.coef_)
 
     def predict(self, X):
-        """
-        Predict target values using the learned model.
-
-        Parameters:
-            X (np.ndarray): Input features (n_samples x n_features).
-
-        Returns:
-            np.ndarray: Predicted values.
-        """
         return X @ self.coef_ + self.intercept_
